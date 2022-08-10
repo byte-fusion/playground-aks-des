@@ -1,0 +1,15 @@
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: premium-ssd-burstable
+provisioner: disk.csi.azure.com
+parameters:
+  skuname: Premium_LRS
+  cachingMode: ReadOnly # https://docs.microsoft.com/en-us/azure/virtual-machines/premium-storage-performance#disk-caching
+  enableBursting: "true" # https://github.com/Azure-Samples/burstable-managed-csi-premium
+  diskEncryptionSetID: /subscriptions/ac425235-cb3f-4106-8c25-a0780a76c1fd/resourceGroups/playground-aks-disks/providers/Microsoft.Compute/diskEncryptionSets/des
+  fsType: xfs
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
