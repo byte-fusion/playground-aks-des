@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "rg" {
-  name      = var.resource_group_name
-  location  = var.region
+  name     = var.resource_group_name
+  location = var.region
 }
 
 module "network" {
-  source              = "../../tf-modules-azure/vnet/"
+  source = "../../terraform-modules-azure/vnet/"
 
   region              = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
