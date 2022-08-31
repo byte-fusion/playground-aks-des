@@ -8,7 +8,7 @@ parameters:
   skuname: Premium_LRS
   cachingMode: ReadOnly # https://docs.microsoft.com/en-us/azure/virtual-machines/premium-storage-performance#disk-caching
   enableBursting: "true" # https://github.com/Azure-Samples/burstable-managed-csi-premium
-  diskEncryptionSetID: /subscriptions/ac425235-cb3f-4106-8c25-a0780a76c1fd/resourceGroups/playground-aks-des/providers/Microsoft.Compute/diskEncryptionSets/des
+  diskEncryptionSetID: /subscriptions/$(subscription_id)/resourceGroups/playground-aks-des/providers/Microsoft.Compute/diskEncryptionSets/des
   fsType: xfs
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
