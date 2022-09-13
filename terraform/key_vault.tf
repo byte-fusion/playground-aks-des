@@ -1,5 +1,5 @@
 module "akv" {
-  source = "../../terraform-modules-azure/akv/"
+  source = "../../terraform-modules-azure/security/akv/"
 
   region                         = azurerm_resource_group.rg.location
   resource_group_name            = azurerm_resource_group.rg.name

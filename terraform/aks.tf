@@ -68,7 +68,7 @@ resource "azurerm_role_assignment" "aks_kubelet_des" {
 
 module "aks" {
   #source                   = "git@github.com:deeproute/terraform-modules-azure//aks?ref=master"
-  source = "../../terraform-modules-azure/aks/"
+  source = "../../terraform-modules-azure/containers/aks/"
 
   region                  = azurerm_resource_group.rg.location
   resource_group_name     = azurerm_resource_group.rg.name
