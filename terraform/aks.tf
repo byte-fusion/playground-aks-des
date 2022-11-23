@@ -46,26 +46,6 @@ resource "azurerm_role_assignment" "aks_user_identity_operator" {
   principal_id         = azurerm_user_assigned_identity.aks_user.principal_id
 }
 
-# resource "azurerm_role_assignment" "aks_user_key_vault_reader" {
-#   scope                = azurerm_resource_group.rg.id
-#   role_definition_name = "Key Vault Crypto Service Encryption User"
-#   principal_id         = azurerm_user_assigned_identity.aks_user.principal_id
-# }
-
-# Microsoft.Compute/diskEncryptionSets/read (Don't have permission to create a custom role with just this permission)
-resource "azurerm_role_assignment" "aks_user_des" {
-  scope                = azurerm_resource_group.rg.id
-  role_definition_name = "Reader"
-  principal_id         = azurerm_user_assigned_identity.aks_user.principal_id
-}
-
-# Microsoft.Compute/diskEncryptionSets/read (Don't have permission to create a custom role with just this permission)
-resource "azurerm_role_assignment" "aks_kubelet_des" {
-  scope                = azurerm_resource_group.rg.id
-  role_definition_name = "Reader"
-  principal_id         = azurerm_user_assigned_identity.aks_kubelet.principal_id
-}
-
 module "aks" {
   #source                   = "git@github.com:deeproute/terraform-modules-azure//aks?ref=master"
   source = "../../terraform-modules-azure/containers/aks/"
@@ -81,15 +61,9 @@ module "aks" {
   network_policy          = var.network_policy
   node_pools              = var.node_pools
   node_subnets            = local.node_subnets
-  disk_encryption_set_id  = azurerm_disk_encryption_set.des.id
+  # disk_encryption_set_id  = azurerm_disk_encryption_set.des.id
 
   depends_on = [
     module.network,
-    module.akv,
-    # azurerm_role_assignment.aks_kubelet_identity_operator,
-    # azurerm_role_assignment.aks_kubelet_key_vault_reader,
-    # azurerm_role_assignment.aks_user_identity_operator,
-    # azurerm_role_assignment.aks_kubelet_des,
-
   ]
 }

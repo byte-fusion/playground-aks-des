@@ -25,55 +25,6 @@ variable "vnet_subnets" {
   default = []
 }
 
-variable "key_vault_name" {
-  type = string
-}
-
-variable "key_vault_randomize_name_suffix" {
-  type    = string
-  default = true
-}
-
-variable "key_vault_sku_tier" {
-  type = string
-}
-
-variable "key_vault_disk_encryption_access_enabled" {
-  type = bool
-}
-
-variable "key_vault_vm_access_enabled" {
-  type = bool
-}
-
-variable "key_vault_soft_delete_retention_days" {
-  type = number
-}
-
-variable "key_vault_purge_protection_enabled" {
-  type = bool
-}
-
-variable "key_vault_enable_rbac" {
-  type    = bool
-  default = true
-}
-
-variable "key_vault_certificate_permissions" {
-  type    = list(string)
-  default = null
-}
-
-variable "key_vault_key_permissions" {
-  type    = list(string)
-  default = null
-}
-
-variable "key_vault_secret_permissions" {
-  type    = list(string)
-  default = null
-}
-
 variable "cluster_name" {
   type = string
 }
